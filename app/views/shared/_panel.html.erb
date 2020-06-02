@@ -1,0 +1,9 @@
+<div class="card p-3 mb-3">
+  <strong><%= title %></strong>
+  <hr>
+  <% collection.each do |resource| %>
+  <div class="panel-item py-1">
+    <span><%= resource.name %></span>
+  </div>
+  <% end %>
+</div>

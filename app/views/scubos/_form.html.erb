@@ -1,0 +1,8 @@
+<%= simple_form_for(scubo) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :category, collection: @categories %>
+  <%= f.input :hashtag, collection: @hashtags %>
+  <%= f.input :address %>
+  <%= f.submit "Add Scubo", class: "btn btn-primary" %>
+<% end %>

@@ -12,16 +12,15 @@
 
   <div class="row">
     <div class="col-3">
-      <div class="card p-3">
-        <strong>Categories</strong>
-        <hr>
-        <%# @categories.each do |category| %>
-
-        <%# end %>
-      </div>
+      <%= render 'shared/panel', collection: @categories, title: "Categories" %>
+      <%= render 'shared/panel', collection: @hashtags, title: "Popular hashtags" %>
     </div>
     <div class="col-9">
-
+      <div class="cards">
+        <% @scubos.each do |scubo| %>
+          <%= render scubo %>
+        <% end %>
+      </div>
     </div>
   </div>
 
