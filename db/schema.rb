@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_171642) do
+ActiveRecord::Schema.define(version: 2020_06_02_171725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "scubo_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["scubo_id"], name: "index_bookmarks_on_scubo_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -41,6 +50,15 @@ ActiveRecord::Schema.define(version: 2020_06_02_171642) do
     t.index ["user_id"], name: "index_scubos_on_user_id"
   end
 
+  create_table "upvotes", force: :cascade do |t|
+    t.bigint "scubo_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["scubo_id"], name: "index_upvotes_on_scubo_id"
+    t.index ["user_id"], name: "index_upvotes_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -54,7 +72,11 @@ ActiveRecord::Schema.define(version: 2020_06_02_171642) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookmarks", "scubos"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "scubos", "categories"
   add_foreign_key "scubos", "hashtags"
   add_foreign_key "scubos", "users"
+  add_foreign_key "upvotes", "scubos"
+  add_foreign_key "upvotes", "users"
 end
