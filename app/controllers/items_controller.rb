@@ -1,22 +1,22 @@
-class ScubosController < ApplicationController
+class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
   before_action :set_categories, only: [ :index, :new ]
   before_action :set_hashtags, only: [ :index, :new ]
 
   def index
-    @scubos = Scubo.all
+    @items = Item.all
   end
 
   def new
-    @scubo = Scubo.new
-    authorize @scubo
+    @item = Item.new
+    authorize @item
   end
 
   def create
-    @scubo = Scubo.new(scubo_params)
-    authorize @scubo
-    @scubo.user = current_user
-    if @scubo.save
+    @item = Item.new(item_params)
+    authorize @item
+    @item.user = current_user
+    if @item.save
       redirect_to root_path
     else
       render :new
@@ -26,8 +26,8 @@ class ScubosController < ApplicationController
   def edit
   end
 
-  def scubo_params
-    params.require(:scubo).permit(
+  def item_params
+    params.require(:item).permit(
       :name,
       :description,
       :category_id,

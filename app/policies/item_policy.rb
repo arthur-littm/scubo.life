@@ -1,4 +1,4 @@
-class ScuboPolicy < ApplicationPolicy
+class ItemPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all

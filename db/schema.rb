@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_114109) do
+ActiveRecord::Schema.define(version: 2020_06_03_133303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_114109) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "scubos", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "address"
@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 2020_06_03_114109) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_scubos_on_category_id"
-    t.index ["hashtag_id"], name: "index_scubos_on_hashtag_id"
-    t.index ["user_id"], name: "index_scubos_on_user_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["hashtag_id"], name: "index_items_on_hashtag_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "upvotes", force: :cascade do |t|
@@ -76,11 +76,11 @@ ActiveRecord::Schema.define(version: 2020_06_03_114109) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "bookmarks", "scubos"
+  add_foreign_key "bookmarks", "items", column: "scubo_id"
   add_foreign_key "bookmarks", "users"
-  add_foreign_key "scubos", "categories"
-  add_foreign_key "scubos", "hashtags"
-  add_foreign_key "scubos", "users"
-  add_foreign_key "upvotes", "scubos"
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "hashtags"
+  add_foreign_key "items", "users"
+  add_foreign_key "upvotes", "items", column: "scubo_id"
   add_foreign_key "upvotes", "users"
 end

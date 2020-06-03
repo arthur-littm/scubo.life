@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  has_many :scubos, dependent: :destroy
+  has_many :items, dependent: :destroy
 end
