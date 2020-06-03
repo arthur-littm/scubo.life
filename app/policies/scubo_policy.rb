@@ -14,6 +14,7 @@ class ScuboPolicy < ApplicationPolicy
   end
 
   def create?
+    user
   end
 
   def edit?

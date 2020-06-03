@@ -11,12 +11,12 @@ User.create!(
 
 
 # CATEGORIES
-Category.create!(name: "🌮 Food")
-Category.create!(name: "🌲 Nature")
-Category.create!(name: "🍹 Drinks")
-Category.create!(name: "🕺 Nightlife")
-Category.create!(name: "🚴‍♂️ Exercising")
-Category.create!(name: "🤳 Touristy")
+Category.create!(name: "Food", emoji: '🌮')
+Category.create!(name: "Nature", emoji: '🌲')
+Category.create!(name: "Drinks", emoji: '🍹')
+Category.create!(name: "Nightlife", emoji: '🕺')
+Category.create!(name: "Exercising", emoji: '🚴‍♂️')
+Category.create!(name: "Touristy", emoji: '🤳')
 
 # HASHTAGS
 Hashtag.create!(name: "# Pork Belly")
@@ -27,6 +27,7 @@ Hashtag.create!(name: "# Happy Hour")
 Scubo.create!(
   name: "Hoxton 101",
   description: "They have the best pork belly in town.",
+  address: "100 Hoxton St, Hackney, London N1 6SG",
   user: User.first,
   category: Category.first,
   hashtag: Hashtag.first)

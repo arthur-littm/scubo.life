@@ -3,7 +3,14 @@
   <hr>
   <% collection.each do |resource| %>
   <div class="panel-item py-1">
-    <span><%= resource.name %></span>
+    <% if resource.is_a?(Category) %>
+      <span class="mr-2">
+        <%= resource.emoji %>
+      </span>
+    <% end %>
+    <span>
+      <%= resource.name %>
+    </span>
   </div>
   <% end %>
 </div>
