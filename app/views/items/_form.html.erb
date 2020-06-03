@@ -1,4 +1,5 @@
 <%= simple_form_for(item) do |f| %>
+
   <div data-controller='counter'>
     <%= f.input :name,
     label: false,
@@ -6,6 +7,7 @@
     input_html: { data: { target: 'counter.input', action: 'keyup->counter#updateCounter' } },
     hint: "<span data-target='counter.counter' data-max='#{Item::MAX_CHARS_NAME}''>#{Item::MAX_CHARS_NAME} characters left.</span>".html_safe %>
   </div>
+
   <div data-controller='counter'>
     <%= f.input :description,
     label: false,
@@ -13,8 +15,20 @@
     input_html: { data: { target: 'counter.input', action: 'keyup->counter#updateCounter' } },
     hint: "<span data-target='counter.counter' data-max='#{Item::MAX_CHARS_DESC}''>#{Item::MAX_CHARS_DESC} characters left.</span>".html_safe %>
   </div>
+
+  <div data-controller='autocomplete'>
+    <%= f.input :address,
+    label: false,
+    placeholder: "Address",
+    input_html: { data: { target: 'autocomplete.input' } } %>
+  </div>
+
+  <div data-controller='typeahead'>
+    <%= f.input :hashtag,
+    input_html: { data: { target: 'typeahead.input', action: 'keyup->typeahead#updateResults' } } %>
+    <div class="card px-3" data-target='typeahead.results'></div>
+  </div>
+
   <%= f.association :category %>
-  <%= f.association :hashtag %>
-  <%= f.input :address, label: false, placeholder: "Address" %>
   <%= f.submit "Add Scubo", class: "btn btn-primary" %>
 <% end %>
