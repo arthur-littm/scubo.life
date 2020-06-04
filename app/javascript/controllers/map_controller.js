@@ -6,28 +6,30 @@ export default class extends Controller {
 
   connect () {
     mapboxgl.accessToken = this.mapTarget.dataset.mapboxApiKey;
-    console.log("hello");
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10'
-    });
+    this.getMap()
   }
 
   addMarker (coordinates) {
-    console.log(coordinates, "hello")
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10'
-    });
-    new mapboxgl.Marker()
+    const map = this.getMap()
+    new mapboxgl.Marker({color: "#1eb2a6"})
       .setLngLat([ coordinates.lng, coordinates.lat ])
       .addTo(map);
     this.fitMapToMarkers(map, coordinates)
   }
 
+  getMap () {
+    const london = [-0.118092, 51.509865]
+    return new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/arthur-littm/ckb19x05d00m21in3jlsd6ykh',
+      center: london,
+      zoom: 1
+    });
+  }
+
   fitMapToMarkers (map, coordinates) {
     const bounds = new mapboxgl.LngLatBounds();
     bounds.extend([ coordinates.lng, coordinates.lat ]);
-    map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+    map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 4000 });
   };
 }

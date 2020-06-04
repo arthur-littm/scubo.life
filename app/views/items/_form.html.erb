@@ -1,25 +1,21 @@
 <%= simple_form_for(item) do |f| %>
-  <div class="form-row">
-    <div class="col">
-      <div data-controller='counter'>
-        <%= f.input :name,
-        label: false,
-        placeholder: 'Name',
-        input_html: { data: { target: 'counter.input', action: 'keyup->counter#updateCounter' } },
-        hint: "<span data-target='counter.counter' data-max='#{Item::MAX_CHARS_NAME}''>#{Item::MAX_CHARS_NAME} characters left.</span>".html_safe %>
-      </div>
-    </div>
-    <div class="col">
-      <div class="typeahead" data-controller='typeahead'>
-        <%= f.input :hashtag,
-        hint: "",
-        label: false,
-        hint: "Does it even count if you don't #hashtag it?",
-        placeholder: "Hashtag",
-        input_html: { data: { target: 'typeahead.input', action: 'keyup->typeahead#updateResults' } } %>
-        <div class="typeahead-results w-100 card" data-target='typeahead.results'>
-        </div>
-      </div>
+
+  <div data-controller='counter'>
+    <%= f.input :name,
+    label: false,
+    placeholder: 'Name',
+    input_html: { data: { target: 'counter.input', action: 'keyup->counter#updateCounter' } },
+    hint: "<span data-target='counter.counter' data-max='#{Item::MAX_CHARS_NAME}''>#{Item::MAX_CHARS_NAME} characters left.</span>".html_safe %>
+  </div>
+
+  <div class="typeahead" data-controller='typeahead'>
+    <%= f.input :hashtag,
+    hint: "",
+    label: false,
+    hint: "Does it even count if you don't #hashtag it?",
+    placeholder: "Hashtag",
+    input_html: { data: { target: 'typeahead.input', action: 'keyup->typeahead#updateResults' } } %>
+    <div class="typeahead-results w-100 card" data-target='typeahead.results'>
     </div>
   </div>
 
@@ -39,6 +35,16 @@
     input_html: { data: { target: 'autocomplete.input' } } %>
   </div>
 
-  <%= f.association :category, as: :radio_buttons %>
+  <%#= f.association :category, as: :radio_buttons %>
+  <fieldset class="form-group radio_buttons required item_category">
+    <input type="hidden" name="item[category_id]" value="">
+    <% @categories.each do |category| %>
+      <div class="form-check">
+        <input class="form-check-input radio_buttons required" type="radio" value="<%= category.id %>" name="item[category_id]" id="item_category_id_<%= category.id %>">
+        <label class="form-check-label collection_radio_buttons" for="item_category_id_<%= category.id %>"><%= category.emoji %> <%= category.name %></label>
+      </div>
+    <% end %>
+  </fieldset>
+
   <%= f.submit "Publish Item", class: "btn btn-primary" %>
 <% end %>

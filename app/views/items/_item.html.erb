@@ -3,7 +3,7 @@
   <div class="px-2 card-content">
     <%= image_tag item.user.picture_url, class: "avatar-bordered" %>
   </div>
-  <p class="m-0"><strong><%= item.name %></strong></p>
+  <p class="m-0"><strong><%= item.name %> <%= item.category.emoji %></strong></p>
   <span class="text-secondary"><%= item.hashtag.name %></span>
 
 </div>
