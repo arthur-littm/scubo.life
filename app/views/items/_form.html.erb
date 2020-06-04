@@ -20,15 +20,21 @@
     <%= f.input :address,
     label: false,
     placeholder: "Address",
+    hint: 'Where is it?',
     input_html: { data: { target: 'autocomplete.input' } } %>
   </div>
 
-  <div data-controller='typeahead'>
+  <div class="typeahead" data-controller='typeahead'>
     <%= f.input :hashtag,
+    hint: "",
+    label: false,
+    hint: "Does it even count if you don't #hashtag it?",
+    placeholder: "Hashtag",
     input_html: { data: { target: 'typeahead.input', action: 'keyup->typeahead#updateResults' } } %>
-    <div class="card px-3" data-target='typeahead.results'></div>
+    <div class="typeahead-results w-100 card" data-target='typeahead.results'>
+    </div>
   </div>
 
-  <%= f.association :category %>
+  <%= f.association :category, as: :radio_buttons %>
   <%= f.submit "Publish Item", class: "btn btn-primary" %>
 <% end %>

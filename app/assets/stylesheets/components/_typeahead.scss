@@ -1,0 +1,15 @@
+.typeahead {
+  position: relative;
+}
+
+.typeahead-results {
+  position: absolute;
+  top: 48px;
+  z-index: 10;
+}
+
+.typeahead-result {
+  &:hover {
+    background-color: $body-bg;
+  }
+}

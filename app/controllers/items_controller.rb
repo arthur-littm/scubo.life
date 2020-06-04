@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     authorize @item
     @item.user = current_user
+    @item.hashtag = find_or_create_hashtag(params.dig(:item, :hashtag))
     if @item.save
       redirect_to root_path
     else
@@ -26,12 +27,19 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  private
+
+  def find_or_create_hashtag(string)
+    return if string.nil?
+    formatted_hashtag = Hashtag.format(string)
+    return Hashtag.find_or_create_by(name: formatted_hashtag)
+  end
+
   def item_params
     params.require(:item).permit(
       :name,
       :description,
       :category_id,
-      :hashtag_id,
       :address)
   end
 end

@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  MAX_CHARS_NAME = 24
+  MAX_CHARS_NAME = 36
   MAX_CHARS_DESC = 200
   belongs_to :category
   belongs_to :hashtag

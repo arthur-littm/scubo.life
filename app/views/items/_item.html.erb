@@ -1,7 +1,7 @@
 <div class="card p-3">
   <img src="https://images.unsplash.com/photo-1527324688151-0e627063f2b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" class="card-img-top" alt="">
   <div class="px-2 card-content">
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-bordered" %>
+    <%= image_tag item.user.picture_url, class: "avatar-bordered" %>
   </div>
   <p class="m-0"><strong><%= item.name %></strong></p>
   <span class="text-secondary"><%= item.hashtag.name %></span>
