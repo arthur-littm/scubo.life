@@ -1,11 +1,26 @@
 <%= simple_form_for(item) do |f| %>
-
-  <div data-controller='counter'>
-    <%= f.input :name,
-    label: false,
-    placeholder: 'Name',
-    input_html: { data: { target: 'counter.input', action: 'keyup->counter#updateCounter' } },
-    hint: "<span data-target='counter.counter' data-max='#{Item::MAX_CHARS_NAME}''>#{Item::MAX_CHARS_NAME} characters left.</span>".html_safe %>
+  <div class="form-row">
+    <div class="col">
+      <div data-controller='counter'>
+        <%= f.input :name,
+        label: false,
+        placeholder: 'Name',
+        input_html: { data: { target: 'counter.input', action: 'keyup->counter#updateCounter' } },
+        hint: "<span data-target='counter.counter' data-max='#{Item::MAX_CHARS_NAME}''>#{Item::MAX_CHARS_NAME} characters left.</span>".html_safe %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="typeahead" data-controller='typeahead'>
+        <%= f.input :hashtag,
+        hint: "",
+        label: false,
+        hint: "Does it even count if you don't #hashtag it?",
+        placeholder: "Hashtag",
+        input_html: { data: { target: 'typeahead.input', action: 'keyup->typeahead#updateResults' } } %>
+        <div class="typeahead-results w-100 card" data-target='typeahead.results'>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div data-controller='counter'>
@@ -22,17 +37,6 @@
     placeholder: "Address",
     hint: 'Where is it?',
     input_html: { data: { target: 'autocomplete.input' } } %>
-  </div>
-
-  <div class="typeahead" data-controller='typeahead'>
-    <%= f.input :hashtag,
-    hint: "",
-    label: false,
-    hint: "Does it even count if you don't #hashtag it?",
-    placeholder: "Hashtag",
-    input_html: { data: { target: 'typeahead.input', action: 'keyup->typeahead#updateResults' } } %>
-    <div class="typeahead-results w-100 card" data-target='typeahead.results'>
-    </div>
   </div>
 
   <%= f.association :category, as: :radio_buttons %>
