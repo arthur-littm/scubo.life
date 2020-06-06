@@ -38,13 +38,16 @@
   <%#= f.association :category, as: :radio_buttons %>
   <fieldset class="form-group radio_buttons required item_category">
     <input type="hidden" name="item[category_id]" value="">
-    <% @categories.each do |category| %>
-      <div class="form-check">
-        <input class="form-check-input radio_buttons required" type="radio" value="<%= category.id %>" name="item[category_id]" id="item_category_id_<%= category.id %>">
-        <label class="form-check-label collection_radio_buttons" for="item_category_id_<%= category.id %>"><%= category.emoji %> <%= category.name %></label>
-      </div>
-    <% end %>
+    <div class="checkboxes" data-controller="checkboxes">
+      <% @categories.each do |category| %>
+        <input class="d-none" type="radio" value="<%= category.id %>" name="item[category_id]" id="item_category_id_<%= category.id %>">
+        <label class="card p-3 m-0 text-center" for="item_category_id_<%= category.id %>" data-action="click->checkboxes#updateCheckbox" data-target="checkboxes.checkbox">
+          <h2><%= category.emoji %></h2>
+          <p class="m-0"><%= category.name %></p>
+        </label>
+      <% end %>
+    </div>
   </fieldset>
 
-  <%= f.submit "Publish Item", class: "btn btn-primary" %>
+  <%= f.submit "Submit", class: "btn btn-primary mb-3" %>
 <% end %>

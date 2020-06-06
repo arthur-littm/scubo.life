@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index ]
-  before_action :set_categories, only: [ :index, :new ]
-  before_action :set_hashtags, only: [ :index, :new ]
+  before_action :set_categories, only: [ :index, :new, :create ]
+  before_action :set_hashtags, only: [ :index ]
 
   def index
     @items = Item.all
@@ -20,6 +20,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+      @item.hashtag = nil
       render :new
     end
   end
@@ -30,7 +31,7 @@ class ItemsController < ApplicationController
   private
 
   def find_or_create_hashtag(string)
-    return if string.nil?
+    return if string.blank?
     formatted_hashtag = Hashtag.format(string)
     return Hashtag.find_or_create_by(name: formatted_hashtag)
   end

@@ -1,0 +1,16 @@
+.checkboxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
+  label {
+    transition: .3s;
+  }
+  .inactive {
+    opacity: .4;
+  }
+  .active {
+    background: $secondary;
+    color: white;
+    opacity: 1;
+  }
+}
