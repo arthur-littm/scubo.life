@@ -16,8 +16,7 @@ users = []
   users << User.create!(
   nickname: Faker::Internet.username,
   email: Faker::Internet.free_email,
-  password: '123456',
-  github_avatar: Faker::LoremPixel.image(size: "50x50"))
+  password: '123456')
 end
 
 puts "Created users 🕺"
@@ -47,9 +46,9 @@ puts "Created hashtags 🤳"
     name: Faker::Restaurant.name,
     description: Faker::Restaurant.description[0..150],
     address: Faker::Address.full_address,
-    user: User.first,
-    category: Category.first,
-    hashtag: Hashtag.first)
+    user: users.sample,
+    category: categories.sample,
+    hashtag: hashtags.sample)
 end
 puts "Created items 🌲"
 puts "Finished 🚀"

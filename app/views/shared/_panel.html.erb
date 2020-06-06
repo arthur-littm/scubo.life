@@ -1,16 +1,18 @@
 <div class="card p-3 mb-3">
   <strong><%= title %></strong>
-  <hr>
+  <hr class="my-2">
   <% collection.each do |resource| %>
-  <div class="panel-item py-1">
-    <% if resource.is_a?(Category) %>
-      <span class="mr-2">
-        <%= resource.emoji %>
+    <% symbol = resource.class.name.parameterize.to_sym %>
+    <% active = params[symbol].to_i == resource.id %>
+    <%= link_to items_path(symbol => resource.id), class: "panel-item rounded p-1 #{'bg-secondary text-white' if active}"  do  %>
+      <% if resource.is_a?(Category) %>
+        <span class="mr-2">
+          <%= resource.emoji %>
+        </span>
+      <% end %>
+      <span>
+        <%= resource.name %>
       </span>
     <% end %>
-    <span>
-      <%= resource.name %>
-    </span>
-  </div>
   <% end %>
 </div>

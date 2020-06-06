@@ -4,7 +4,10 @@ class ItemsController < ApplicationController
   before_action :set_hashtags, only: [ :index ]
 
   def index
-    @items = Item.page(params[:page])
+    @items = Item.all
+    @items = @items.filter_by_category(params[:category]) if params[:category].present?
+    @items = @items.filter_by_hashtag(params[:hashtag]) if params[:hashtag].present?
+    @items = @items.page(params[:page])
   end
 
   def new
