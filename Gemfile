@@ -27,6 +27,8 @@ gem 'omniauth-github'
 
 gem 'geocoder'
 
+gem 'kaminari'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -47,6 +49,7 @@ group :development, :test do  gem 'pry-byebug'
 end
 
 group :development do
+  gem 'faker'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'

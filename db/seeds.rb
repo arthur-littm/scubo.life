@@ -1,7 +1,8 @@
 Category.destroy_all
 Hashtag.destroy_all
-Scubo.destroy_all
+Item.destroy_all
 User.destroy_all
+puts "Cleaned up DB 🧹"
 
 # USERS
 User.create!(
@@ -9,25 +10,46 @@ User.create!(
   email: "arthur@test.com",
   password: '123456')
 
+users = []
+
+10.times do
+  users << User.create!(
+  nickname: Faker::Internet.username,
+  email: Faker::Internet.free_email,
+  password: '123456',
+  github_avatar: Faker::LoremPixel.image(size: "50x50"))
+end
+
+puts "Created users 🕺"
 
 # CATEGORIES
-Category.create!(name: "Food", emoji: '🌮')
-Category.create!(name: "Nature", emoji: '🌲')
-Category.create!(name: "Drinks", emoji: '🍹')
-Category.create!(name: "Nightlife", emoji: '🕺')
-Category.create!(name: "Exercising", emoji: '🚴‍♂️')
-Category.create!(name: "Touristy", emoji: '🤳')
+food = Category.create!(name: "Food", emoji: '🌮')
+nature = Category.create!(name: "Nature", emoji: '🌲')
+drinks = Category.create!(name: "Drinks", emoji: '🍹')
+nightlife = Category.create!(name: "Nightlife", emoji: '🕺')
+exercising = Category.create!(name: "Exercising", emoji: '🚴‍♂️')
+touristy = Category.create!(name: "Touristy", emoji: '🤳')
+
+categories = [food, nature, drinks, nightlife, exercising, touristy]
+puts "Created categories 🌮"
 
 # HASHTAGS
-Hashtag.create!(name: "# Pork Belly")
-Hashtag.create!(name: "# Beers")
-Hashtag.create!(name: "# Views")
-Hashtag.create!(name: "# Happy Hour")
+pork = Hashtag.create!(name: "# Pork Belly")
+beers = Hashtag.create!(name: "# Beers")
+views = Hashtag.create!(name: "# Views")
+friday = Hashtag.create!(name: "# Friday")
 
-Scubo.create!(
-  name: "Hoxton 101",
-  description: "They have the best pork belly in town.",
-  address: "100 Hoxton St, Hackney, London N1 6SG",
-  user: User.first,
-  category: Category.first,
-  hashtag: Hashtag.first)
+hashtags = [pork, beers, views, friday]
+puts "Created hashtags 🤳"
+
+30.times do
+  Item.create!(
+    name: Faker::Restaurant.name,
+    description: Faker::Restaurant.description[0..150],
+    address: Faker::Address.full_address,
+    user: User.first,
+    category: Category.first,
+    hashtag: Hashtag.first)
+end
+puts "Created items 🌲"
+puts "Finished 🚀"

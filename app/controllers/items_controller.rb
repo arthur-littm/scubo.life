@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_hashtags, only: [ :index ]
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
   end
 
   def new

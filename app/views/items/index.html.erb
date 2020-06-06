@@ -12,14 +12,19 @@
 
   <div class="row">
     <div class="col-3">
-      <%= render 'shared/panel', collection: @categories, title: "Categories" %>
-      <%= render 'shared/panel', collection: @hashtags, title: "Popular hashtags" %>
+      <div class="sticky-top-spaced">
+        <%= render 'shared/panel', collection: @categories, title: "Categories" %>
+        <%= render 'shared/panel', collection: @hashtags, title: "Popular hashtags" %>
+      </div>
     </div>
     <div class="col-9">
       <div class="cards">
         <% @items.each do |item| %>
           <%= render item %>
         <% end %>
+      </div>
+      <div class="p-3 d-flex justify-content-center">
+        <%= paginate @items %>
       </div>
     </div>
   </div>
