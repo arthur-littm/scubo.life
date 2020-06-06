@@ -26,13 +26,14 @@ $border-radius-sm: 2px;
 
 // Override other variables below!
 $link-color: $secondary;
+$link-hover-decoration: none;
+
 $breadcrumb-bg: $body-bg;
 $breadcrumb-padding-y: 0;
 $breadcrumb-padding-x: 0;
 $btn-padding-y: 8px;
 $btn-padding-x: 24px;
 $btn-font-weight: bold;
-
 .btn-primary {
   color: white !important;
   background: linear-gradient($primary, $primary-2);
