@@ -6,14 +6,19 @@ export default class extends Controller {
 
   connect () {
     mapboxgl.accessToken = this.mapTarget.dataset.mapboxApiKey;
-    this.getMap()
+    const map = this.getMap()
+    if (this.mapTarget.dataset.markers) {
+      const markers = JSON.parse(this.mapTarget.dataset.markers);
+      this.addMarker(markers, map);
+    }
   }
 
-  addMarker (coordinates) {
-    const map = this.getMap()
-    new mapboxgl.Marker({color: "#1eb2a6"})
-      .setLngLat([ coordinates.lng, coordinates.lat ])
-      .addTo(map);
+  addMarker (coordinates, map) {
+    coordinates.forEach((marker) => {
+      new mapboxgl.Marker({color: "#1eb2a6"})
+        .setLngLat([ marker.lng, marker.lat ])
+        .addTo(map);
+    })
     this.fitMapToMarkers(map, coordinates)
   }
 
@@ -27,9 +32,9 @@ export default class extends Controller {
     });
   }
 
-  fitMapToMarkers (map, coordinates) {
+  fitMapToMarkers (map, markers) {
     const bounds = new mapboxgl.LngLatBounds();
-    bounds.extend([ coordinates.lng, coordinates.lat ]);
+    markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
     map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 4000 });
   };
 }

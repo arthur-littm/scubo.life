@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_hashtags, only: [ :index, :map ]
 
   def index
-    @items = Item.all
+    @items = policy_scope(Item)
     @items = @items.filter_by_category(params[:category]) if params[:category].present?
     @items = @items.filter_by_hashtag(params[:hashtag]) if params[:hashtag].present?
     @items = @items.page(params[:page])
@@ -13,6 +13,12 @@ class ItemsController < ApplicationController
   def map
     authorize(Item)
     @items = policy_scope(Item).geocoded
+    @markers = @items.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def new

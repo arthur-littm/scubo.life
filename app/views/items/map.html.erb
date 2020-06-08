@@ -25,12 +25,13 @@
           <% end %>
         </div>
         <div>
-          <%= link_to "List", items_path, class: "small" %>
+          <%= link_to "List view", items_path, class: "small" %>
         </div>
       </div>
       <div id="map"
            class="rounded overflow-hidden"
-           style="width: 100%; height: 600px;"
+           style="width: 100%; height: 500px;"
+           data-markers="<%= @markers.to_json %>"
            data-target="map.map"
            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
