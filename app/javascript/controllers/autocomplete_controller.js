@@ -7,8 +7,8 @@ export default class extends Controller {
   connect () {
     const placesAutocomplete = places({ container: this.inputTarget });
     const mapController = this.getController('map');
-    const map = mapController.getMap();
     placesAutocomplete.on('change', e => {
+      const map = mapController.getMap();
       mapController.addMarker([e.suggestion.latlng], map);
     });
   }

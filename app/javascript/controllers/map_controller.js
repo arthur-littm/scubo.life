@@ -15,9 +15,13 @@ export default class extends Controller {
 
   addMarker (coordinates, map) {
     coordinates.forEach((marker) => {
-      new mapboxgl.Marker({color: "#1eb2a6"})
+      const mapMarker = new mapboxgl.Marker({color: "#1eb2a6"})
         .setLngLat([ marker.lng, marker.lat ])
         .addTo(map);
+      if (marker.infoWindow) {
+        const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
+        mapMarker.setPopup(popup);
+      }
     })
     this.fitMapToMarkers(map, coordinates)
   }

@@ -9,14 +9,16 @@
   </div>
 
   <div class="typeahead" data-controller='typeahead'>
-    <%= f.input :hashtag,
-    hint: "",
-    label: false,
-    hint: "Does it even count if you don't #hashtag it?",
-    placeholder: "Hashtag",
-    input_html: { data: { target: 'typeahead.input', action: 'keyup->typeahead#updateResults' } } %>
-    <div class="typeahead-results w-100 card" data-target='typeahead.results'>
-    </div>
+    <%= f.simple_fields_for :hashtag do |h| %>
+      <%= h.input :name,
+      hint: "",
+      label: false,
+      hint: "Does it even count if you don't #hashtag it?",
+      placeholder: "Hashtag",
+      input_html: { value: item.hashtag&.name, data: { target: 'typeahead.input', action: 'keyup->typeahead#updateResults blur->typeahead#closeResults' } } %>
+      <div class="typeahead-results w-100 card" data-target='typeahead.results'>
+      </div>
+    <% end %>
   </div>
 
   <div data-controller='counter'>

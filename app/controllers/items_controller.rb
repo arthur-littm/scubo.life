@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :map ]
-  before_action :set_categories, only: [ :index, :new, :create, :map ]
+  before_action :set_categories, only: [ :index, :new, :create, :map, :edit, :update ]
   before_action :set_hashtags, only: [ :index, :map ]
 
   def index
@@ -13,10 +13,11 @@ class ItemsController < ApplicationController
   def map
     authorize(Item)
     @items = policy_scope(Item).geocoded
-    @markers = @items.map do |flat|
+    @markers = @items.map do |item|
       {
-        lat: flat.latitude,
-        lng: flat.longitude
+        lat: item.latitude,
+        lng: item.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { item: item })
       }
     end
   end
@@ -24,13 +25,14 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     authorize @item
+    @markers = []
   end
 
   def create
     @item = Item.new(item_params)
     authorize @item
     @item.user = current_user
-    @item.hashtag = find_or_create_hashtag(params.dig(:item, :hashtag))
+    @item.hashtag = find_or_create_hashtag(params.dig(:item, :hashtag, :name))
     if @item.save
       redirect_to root_path
     else
@@ -42,6 +44,18 @@ class ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
     authorize @item
+    @markers = [ { lat: @item.latitude, lng: @item.longitude} ]
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    authorize @item
+    @item.hashtag = find_or_create_hashtag(params.dig(:item, :hashtag, :name))
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private

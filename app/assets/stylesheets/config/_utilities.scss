@@ -2,3 +2,7 @@
   position: sticky;
   top: $spacer;
 }
+
+.img-fit {
+  object-fit: cover;
+}

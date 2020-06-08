@@ -1,5 +1,5 @@
 <div class="card p-3" data-toggle="modal" data-target="#item<%= item.id %>">
-  <%= cl_image_tag item.photo_key, class: "card-img", alt: item.name %>
+  <%= cl_image_tag item.photo_key, class: "card-img img-fit", alt: item.name, height: 160 %>
   <div class="px-2 card-content">
     <%= image_tag item.user.picture_url, class: "avatar-bordered" %>
   </div>
