@@ -1,13 +1,18 @@
 class ItemsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index ]
-  before_action :set_categories, only: [ :index, :new, :create ]
-  before_action :set_hashtags, only: [ :index ]
+  skip_before_action :authenticate_user!, only: [ :index, :map ]
+  before_action :set_categories, only: [ :index, :new, :create, :map ]
+  before_action :set_hashtags, only: [ :index, :map ]
 
   def index
     @items = Item.all
     @items = @items.filter_by_category(params[:category]) if params[:category].present?
     @items = @items.filter_by_hashtag(params[:hashtag]) if params[:hashtag].present?
     @items = @items.page(params[:page])
+  end
+
+  def map
+    authorize(Item)
+    @items = policy_scope(Item).geocoded
   end
 
   def new

@@ -9,6 +9,10 @@ class ItemPolicy < ApplicationPolicy
     true
   end
 
+  def map?
+    true
+  end
+
   def new?
     user
   end
