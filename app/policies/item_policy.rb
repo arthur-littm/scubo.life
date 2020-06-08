@@ -22,8 +22,16 @@ class ItemPolicy < ApplicationPolicy
   end
 
   def edit?
+    current_user_is_owner?
   end
 
   def update?
+    current_user_is_owner?
+  end
+
+  private
+
+  def current_user_is_owner?
+    record.user == user
   end
 end

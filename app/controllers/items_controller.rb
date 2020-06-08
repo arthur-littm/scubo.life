@@ -40,6 +40,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+    authorize @item
   end
 
   private
@@ -55,6 +57,7 @@ class ItemsController < ApplicationController
       :name,
       :description,
       :category_id,
-      :address)
+      :address,
+      :photo)
   end
 end

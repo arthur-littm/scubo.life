@@ -34,6 +34,10 @@ $breadcrumb-padding-x: 0;
 $btn-padding-y: 8px;
 $btn-padding-x: 24px;
 $btn-font-weight: bold;
+
+$modal-backdrop-bg: $secondary;
+$modal-backdrop-opacity: .8;
+
 .btn-primary {
   color: white !important;
   background: linear-gradient($primary, $primary-2);
