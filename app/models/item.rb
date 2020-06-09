@@ -6,6 +6,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :hashtag
   belongs_to :user
+  has_many :upvotes
 
   validates :name, :description, :address, presence: true
   validates :name, length: { minimum: 2, maximum: MAX_CHARS_NAME }
@@ -22,6 +23,7 @@ class Item < ApplicationRecord
   validate :photo_size, if: Proc.new { |p| p.photo.attached? }
 
   after_create :notify_subscribers
+
 
   def photo_key
     if photo.attached?

@@ -15,6 +15,7 @@ $primary:    #ffa34d;
 $primary-2:  #f67575;
 $secondary:   #1eb2a6;
 $light: $body-bg;
+$light-secondary: #D4F8E8;
 // $success:    $green;
 // $info:       $yellow;
 // $danger:     $red;
@@ -33,7 +34,7 @@ $breadcrumb-bg: $body-bg;
 $breadcrumb-padding-y: 0;
 $breadcrumb-padding-x: 0;
 $btn-padding-y: 8px;
-$btn-padding-x: 24px;
+$btn-padding-x: 16px;
 $btn-font-weight: bold;
 
 $modal-backdrop-bg: $secondary;
@@ -42,4 +43,15 @@ $modal-backdrop-opacity: .8;
 .btn-primary {
   color: white !important;
   background: linear-gradient($primary, $primary-2);
+}
+
+
+.btn-secondary {
+  color: $secondary !important;
+  background: $light-secondary !important;
+  border: none !important;
+  &:hover {
+    background: $secondary !important;
+    color: white !important;
+  }
 }

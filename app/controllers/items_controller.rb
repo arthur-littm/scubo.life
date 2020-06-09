@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_hashtags, only: [ :index, :map ]
 
   def index
-    @items = policy_scope(Item)
+    @items = policy_scope(Item).joins(:user)
     @items = @items.filter_by_category(params[:category]) if params[:category].present?
     @items = @items.filter_by_hashtag(params[:hashtag]) if params[:hashtag].present?
     @items = @items.page(params[:page])

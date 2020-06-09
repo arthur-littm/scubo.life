@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_155216) do
+ActiveRecord::Schema.define(version: 2020_06_09_172645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(version: 2020_06_09_155216) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.bigint "scubo_id", null: false
+    t.bigint "item_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["scubo_id"], name: "index_bookmarks_on_scubo_id"
+    t.index ["item_id"], name: "index_bookmarks_on_item_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
@@ -81,11 +81,11 @@ ActiveRecord::Schema.define(version: 2020_06_09_155216) do
   end
 
   create_table "upvotes", force: :cascade do |t|
-    t.bigint "scubo_id", null: false
+    t.bigint "item_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["scubo_id"], name: "index_upvotes_on_scubo_id"
+    t.index ["item_id"], name: "index_upvotes_on_item_id"
     t.index ["user_id"], name: "index_upvotes_on_user_id"
   end
 
@@ -107,11 +107,11 @@ ActiveRecord::Schema.define(version: 2020_06_09_155216) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bookmarks", "items", column: "scubo_id"
+  add_foreign_key "bookmarks", "items"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "hashtags"
   add_foreign_key "items", "users"
-  add_foreign_key "upvotes", "items", column: "scubo_id"
+  add_foreign_key "upvotes", "items"
   add_foreign_key "upvotes", "users"
 end
