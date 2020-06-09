@@ -1,5 +1,5 @@
-<div class="card p-3" data-toggle="modal" data-target="#item<%= item.id %>">
-  <%= cl_image_tag item.photo_key, class: "card-img img-fit", alt: item.name, height: 160 %>
+<div class="card p-3">
+  <%= cl_image_tag item.photo_key, class: "card-img img-fit", alt: item.name, height: 160, role: "button", data: { toggle: "modal", target: "#item#{ item.id }" } %>
   <div class="px-2 card-content">
     <%= image_tag item.user.picture_url, class: "avatar-bordered" %>
   </div>
@@ -9,22 +9,10 @@
 
 <!-- Modal -->
 <div class="modal fade" id="item<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="item<%= item.id %>Label" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="item<%= item.id %>Label"><%= item.name %></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
       <div class="modal-body">
-        <% if policy(item).edit? %>
-          <%= link_to "Edit", edit_item_path(item), class: 'small' %>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <%= render 'show', item: item %>
       </div>
     </div>
   </div>
