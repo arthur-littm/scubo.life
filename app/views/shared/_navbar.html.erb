@@ -10,7 +10,14 @@
         <div class="ml-3 dropdown">
           <%= image_tag current_user.picture_url, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <h6 class="dropdown-header">Menu</h6>
             <%= link_to "My Account", "#", class: "dropdown-item" %>
+            <div class="dropdown-divider"></div>
+            <% if current_user.admin %>
+              <h6 class="dropdown-header">Admin</h6>
+              <%= link_to "Dashboard", rails_admin_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+            <% end %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </div>
