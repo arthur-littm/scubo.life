@@ -32,7 +32,7 @@ class Item < ApplicationRecord
   end
 
   def notify_subscribers
-    return if Rails.env.development?
+    return unless Rails.env.production?
     client = Twilio::REST::Client.new
     subscriber = Subscriber.first
     client.messages.create(
