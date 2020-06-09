@@ -21,12 +21,24 @@ class Item < ApplicationRecord
   validate :photo_present
   validate :photo_size, if: Proc.new { |p| p.photo.attached? }
 
+  after_create :notify_subscribers
+
   def photo_key
     if photo.attached?
       photo.key
     else
       'images_ydlatu'
     end
+  end
+
+  def notify_subscribers
+    client = Twilio::REST::Client.new
+    subscriber = Subscriber.first
+    client.messages.create(
+        from: "+442033897305",
+        to: subscriber.phone_number,
+        body: "Scubo! #{self.user.email} added an item: #{self.name}"
+    )
   end
 
   private

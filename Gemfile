@@ -31,6 +31,10 @@ gem 'kaminari'
 
 gem 'cloudinary', '~> 1.12.0'
 
+gem 'unsplash'
+
+gem 'twilio-ruby', '~> 5.36.0'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
