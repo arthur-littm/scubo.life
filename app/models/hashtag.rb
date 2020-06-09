@@ -5,7 +5,7 @@ class Hashtag < ApplicationRecord
   def self.format(string)
     text = string.gsub("#", " ")
     .gsub(" ", "")
-    .split(/(?=[A-Z])/).join(" ")
+    .split(/(?=[A-Z])/).map(&:capitalize).join(" ")
     return "# #{text}"
   end
 end

@@ -35,6 +35,8 @@ gem 'unsplash'
 
 gem 'twilio-ruby', '~> 5.36.0'
 
+gem 'rails_admin', '~> 2.0'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
