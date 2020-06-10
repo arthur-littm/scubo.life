@@ -1,5 +1,5 @@
 <div class="card p-3">
-  <%= cl_image_tag item.photo_key, class: "card-img img-fit", alt: item.name, height: 160, role: "button", data: { toggle: "modal", target: "#item#{ item.id }" } %>
+  <%= cl_image_tag item.photo_key, class: "card-img img-fit", alt: item.name, height: 160, role: "button", data: { action: "click->modal#open", item: item.id } %>
   <div class="px-2 card-content">
     <%= image_tag item.user.picture_url, class: "avatar-bordered" %>
   </div>
@@ -11,16 +11,5 @@
     <%= link_to item_upvotes_path(item), method: :post, class: 'btn btn-secondary' do %>
       <i class="fas fa-air-freshener"></i> <small><%= item.upvotes.count %></small>
     <% end %>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="item<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="item<%= item.id %>Label" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <%= render 'show', item: item %>
-      </div>
-    </div>
   </div>
 </div>

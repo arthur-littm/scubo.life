@@ -1,4 +1,4 @@
-<div class="container py-3">
+<div class="container py-3" data-controller="modal">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -40,4 +40,13 @@
     </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" data-target="modal.modal" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-body" data-target="modal.container">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

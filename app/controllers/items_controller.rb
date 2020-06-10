@@ -13,6 +13,8 @@ class ItemsController < ApplicationController
   def map
     authorize(Item)
     @items = policy_scope(Item).geocoded
+    @items = @items.filter_by_category(params[:category]) if params[:category].present?
+    @items = @items.filter_by_hashtag(params[:hashtag]) if params[:hashtag].present?
     @markers = @items.map do |item|
       {
         lat: item.latitude,
