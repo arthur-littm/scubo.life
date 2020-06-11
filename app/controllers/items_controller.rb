@@ -4,12 +4,10 @@ class ItemsController < ApplicationController
   before_action :set_hashtags, only: [ :index, :map ]
 
   def index
-    @items = policy_scope(Item).joins(:user)
+    @items = sort(policy_scope(Item))
+    @items = @items.where(user_id: params[:user]) if params[:user]
     @items = @items.filter_by_category(params[:category]) if params[:category].present?
     @items = @items.filter_by_hashtag(params[:hashtag]) if params[:hashtag].present?
-    if params[:user]
-      @items = Item.where(user_id: params[:user])
-    end
     @items = @items.page(params[:page])
   end
 
@@ -71,6 +69,17 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def sort(items)
+    if params[:sort] == 'popular'
+      items.left_joins(:upvotes)
+        .group(:id)
+        .order('COUNT(upvotes.id) DESC')
+    else
+      items.joins(:user)
+        .order(created_at: :desc)
+    end
+  end
 
   def find_or_create_hashtag(string)
     return if string.blank?

@@ -3,10 +3,6 @@ import { Controller } from "stimulus";
 export default class extends Controller {
   static targets = [ 'container', 'modal' ];
 
-  connect () {
-    console.log('hello');
-  }
-
   open (e) {
     const itemId = e.currentTarget.dataset.item;
     fetch(`/items/${itemId}`)
