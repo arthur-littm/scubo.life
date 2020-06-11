@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
 
   def set_hashtags
     @hashtags = policy_scope(Hashtag)
+      .left_joins(:items)
+      .group(:id)
+      .order('COUNT(items.id) DESC')
+      .limit(5)
   end
 
   private

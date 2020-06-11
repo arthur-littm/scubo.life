@@ -5,14 +5,19 @@
     <% symbol = resource.class.name.parameterize.to_sym %>
     <% active = params[symbol].to_i == resource.id %>
     <%= link_to items_path(symbol => resource.id), class: "panel-item rounded p-1 #{'bg-secondary text-white' if active}"  do  %>
-      <% if resource.is_a?(Category) %>
-        <span class="mr-2">
-          <%= resource.emoji %>
-        </span>
-      <% end %>
-      <span>
-        <%= resource.name %>
-      </span>
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <% if resource.is_a?(Category) %>
+            <span class="mr-2">
+              <%= resource.emoji %>
+            </span>
+          <% end %>
+          <span>
+            <%= resource.name %>
+          </span>
+        </div>
+        <small class="pr-2 <%=  active ? 'text-white' : 'text-muted' %>"><%= resource.items.count %></small>
+      </div>
     <% end %>
   <% end %>
 </div>
