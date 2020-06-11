@@ -1,4 +1,4 @@
-<% if policy(item).can_upvote? %>
+<% if policy(item).can_upvote? || !user_signed_in? %>
   <%= link_to item_upvotes_path(item), method: :post, class: 'btn btn-secondary' do %>
     <i class="fas fa-air-freshener"></i> <small><%= item.upvotes.count %></small>
   <% end %>
