@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :index, :map ]
+  skip_before_action :authenticate_user!, only: [ :index, :map, :show ]
   before_action :set_categories, only: [ :index, :new, :create, :map, :edit, :update ]
   before_action :set_hashtags, only: [ :index, :map ]
 
