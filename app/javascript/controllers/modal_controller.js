@@ -8,6 +8,12 @@ export default class extends Controller {
   }
 
   open (e) {
+    const itemId = e.currentTarget.dataset.item;
+    fetch(`/items/${itemId}`)
+      .then(response => response.text())
+      .then((data) => {
+        this.containerTarget.innerHTML = data;
+      });
     $(this.modalTarget).modal();
   }
 }

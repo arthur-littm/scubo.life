@@ -37,7 +37,6 @@
     input_html: { data: { target: 'autocomplete.input' } } %>
   </div>
 
-  <%#= f.association :category, as: :radio_buttons %>
   <fieldset class="form-group radio_buttons required item_category">
     <input type="hidden" name="item[category_id]" value="">
     <div class="checkboxes" data-controller="checkboxes">
@@ -49,6 +48,10 @@
         </label>
       <% end %>
     </div>
+    <% if item.errors[:category].any? %>
+      <div class="small text-danger mt-2">Please select a category.</div>
+    <% end %>
+
   </fieldset>
 
   <%= f.input :photo, as: :file %>

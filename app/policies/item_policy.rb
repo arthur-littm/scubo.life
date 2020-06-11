@@ -9,6 +9,14 @@ class ItemPolicy < ApplicationPolicy
     true
   end
 
+  def show?
+    true
+  end
+
+  def can_upvote?
+    user && !record.upvoters.include?(user)
+  end
+
   def map?
     true
   end

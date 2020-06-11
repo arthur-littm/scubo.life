@@ -13,10 +13,15 @@ export default class extends Controller {
     fetch(`/hashtags?query=${this.inputTarget.value.replace('#','')}`)
       .then(response => response.json())
       .then((data) => {
-        console.log(data);
-        data.forEach((item) => {
-          this.resultsTarget.insertAdjacentHTML('afterbegin', this.buildHTML(item))
-        });
+        this.resultsTarget.insertAdjacentHTML('afterbegin', "<small class='px-3 pt-2 text-muted'>Existing hashtags</small>")
+        console.log(data)
+        if (data.length === 0) {
+          this.resultsTarget.insertAdjacentHTML('beforeend', "<small class='mx-3 my-2 p-2 text-muted bg-light rounded'>No match found, submit form to create new hashtag 😎</small>")
+        } else {
+          data.forEach((item) => {
+            this.resultsTarget.insertAdjacentHTML('beforeend', this.buildHTML(item))
+          });
+        }
       });
   }
 

@@ -7,7 +7,17 @@ class ItemsController < ApplicationController
     @items = policy_scope(Item).joins(:user)
     @items = @items.filter_by_category(params[:category]) if params[:category].present?
     @items = @items.filter_by_hashtag(params[:hashtag]) if params[:hashtag].present?
+    if params[:user]
+      @items = Item.where(user_id: params[:user])
+    end
     @items = @items.page(params[:page])
+  end
+
+  def show
+    @item = Item.find(params[:id])
+    authorize @item
+    @markers = [ { lat: @item.latitude, lng: @item.longitude} ]
+    render partial: 'items/show', locals: { item: @item }
   end
 
   def map

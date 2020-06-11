@@ -4,7 +4,7 @@ class UpvotePolicy < ApplicationPolicy
   end
 
   def create?
-    current_user_is_owner?
+    user
   end
 
   private

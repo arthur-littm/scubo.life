@@ -21,7 +21,7 @@
       <div class="d-flex justify-content-between align-items-center mb-2">
         <div>
           <span class="text-muted small"><%= page_entries_info @items %></span>
-          <% if params.has_key?(:category) || params.has_key?(:hashtag) %>
+          <% if params.has_key?(:category) || params.has_key?(:hashtag) || params.has_key?(:user) %>
             <%= link_to "Clear filters", root_path, class: "small" %>
           <% end %>
         </div>
