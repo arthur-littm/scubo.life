@@ -5,8 +5,9 @@
   </div>
   <div class="d-flex justify-content-between align-items-start">
     <div>
-      <p class="m-0"><strong><%= item.name %> <%= item.category.emoji %></strong></p>
-      <span class="text-secondary small"><%= link_to item.hashtag.name, items_path(hashtag: item.hashtag) %></span>
+      <p class="m-0"><strong><%= item.name %></strong></p>
+        <span class="pr-1"><%= item.category.emoji %></span>
+        <span class="text-secondary small"><%= link_to item.hashtag.name, items_path(hashtag: item.hashtag) %></span>
     </div>
     <%= render 'items/upvote_action', item: item %>
   </div>

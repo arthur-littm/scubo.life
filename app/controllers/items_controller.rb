@@ -71,13 +71,13 @@ class ItemsController < ApplicationController
   private
 
   def sort(items)
-    if params[:sort] == 'popular'
+    if params[:sort] == 'newest'
+      items.joins(:user)
+        .order(created_at: :desc)
+    else
       items.left_joins(:upvotes)
         .group(:id)
         .order('COUNT(upvotes.id) DESC')
-    else
-      items.joins(:user)
-        .order(created_at: :desc)
     end
   end
 
