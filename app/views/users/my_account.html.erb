@@ -31,17 +31,17 @@
             <div>
               <i class="fas fa-grip-horizontal text-muted mr-2"></i> Published Items
             </div>
-            <span class="text-muted small">10</span>
+            <span class="text-muted small"><%= current_user.items.count %></span>
           <% end %>
           <%= link_to "#", class: 'p-3 border-bottom d-flex w-100 justify-content-between align-items-center' do %>
             <div>
-              <i class="fas fa-heart text-muted mr-2"></i> Saved Items
+              <i class="fas fa-heart text-muted mr-2"></i> Saved Items <small class="text-muted">Coming soon!</small>
             </div>
             <span class="text-muted small">10</span>
           <% end %>
           <%= link_to "#", class: 'p-3 d-block d-flex w-100 justify-content-between align-items-center' do %>
             <div>
-              <i class="fas fa-archive text-muted mr-2"></i> Archived Items
+              <i class="fas fa-archive text-muted mr-2"></i> Archived Items <small class="text-muted">Coming soon!</small>
             </div>
             <span class="text-muted small">10</span>
           <% end %>
@@ -64,8 +64,12 @@
         <h5>Published Items</h5>
       </div>
       <div class="pt-2">
-        <% current_user.items.each do |item| %>
-          <%= render 'items/list_item', item: item %>
+        <% if current_user.items.any? %>
+          <% current_user.items.each do |item| %>
+            <%= render 'items/list_item', item: item %>
+          <% end %>
+        <% else %>
+          <p class="text-muted pt-3">No items yet, <%= link_to "add one here", new_item_path %></p>
         <% end %>
       </div>
     </div>
