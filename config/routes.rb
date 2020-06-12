@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { omniauth_callbacks: "callbacks" }
   root to: 'items#index'
-  resources :items, only: [ :show, :new, :create, :edit, :update, :index ] do
+  resources :items, only: [ :show, :new, :create, :edit, :update ] do
     get :map, on: :collection
     resources :upvotes, only: [ :create ]
   end

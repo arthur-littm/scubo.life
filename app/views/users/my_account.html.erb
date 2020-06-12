@@ -1,23 +1,16 @@
 <div class="bg-dark text-white">
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-start pt-3 pb-5">
-      <nav aria-label="breadcrumb ">
-        <ol class="breadcrumb bg-dark">
-          <li class="breadcrumb-item">
-            <%= link_to "Home", root_path %>
-          </li>
-          <li class="breadcrumb-item active text-white" aria-current="page">
-            My Account
-          </li>
-        </ol>
-      </nav>
-
-      <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-sm" %>
-
-    </div>
-
+  <div class="container pt-3 pb-5">
+    <nav aria-label="breadcrumb ">
+      <ol class="breadcrumb bg-dark">
+        <li class="breadcrumb-item">
+          <%= link_to "Home", root_path %>
+        </li>
+        <li class="breadcrumb-item active text-white" aria-current="page">
+          My Account
+        </li>
+      </ol>
+    </nav>
   </div>
-
 </div>
 <div class="container">
   <div class="row">
@@ -31,10 +24,38 @@
           </div>
         </div>
         <div class="bg-light px-3 py-1">
-          <span class="text-muted">Dashboard</span>
+          <span class="text-muted"><strong>Dashboard</strong></span>
         </div>
-        <div class="p-3">
-          <%= link_to "Hello", "#"  %>
+        <div>
+          <%= link_to "#", class: 'p-3 border-bottom d-flex w-100 justify-content-between align-items-center' do %>
+            <div>
+              <i class="fas fa-grip-horizontal text-muted mr-2"></i> Published Items
+            </div>
+            <span class="text-muted small">10</span>
+          <% end %>
+          <%= link_to "#", class: 'p-3 border-bottom d-flex w-100 justify-content-between align-items-center' do %>
+            <div>
+              <i class="fas fa-heart text-muted mr-2"></i> Saved Items
+            </div>
+            <span class="text-muted small">10</span>
+          <% end %>
+          <%= link_to "#", class: 'p-3 d-block d-flex w-100 justify-content-between align-items-center' do %>
+            <div>
+              <i class="fas fa-archive text-muted mr-2"></i> Archived Items
+            </div>
+            <span class="text-muted small">10</span>
+          <% end %>
+        </div>
+        <div class="bg-light px-3 py-1">
+          <span class="text-muted"><strong>Account</strong></span>
+        </div>
+        <div>
+          <%= link_to "#", class: 'p-3 border-bottom d-block' do %>
+            <i class="fas fa-cogs text-muted mr-2"></i> Edit Profile
+          <% end %>
+          <%= link_to "#", class: 'p-3 border-bottom d-block' do %>
+            <i class="fas fa-hand-peace text-muted mr-2"></i> Log out
+          <% end %>
         </div>
       </div>
     </div>

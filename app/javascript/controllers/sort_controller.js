@@ -9,7 +9,7 @@ export default class extends Controller {
 
   refresh(e) {
     const sort = e.currentTarget.options[e.currentTarget.selectedIndex].value;
-    const path = `/items?sort=${sort}`;
+    const path = `/?sort=${sort}`;
     window.location = path;
   }
 }

@@ -16,7 +16,7 @@
     <div class="col">
       <div class="bg-light rounded p-3 mb-3">
         <p class="m-0"><strong><%= item.name %> <%= item.category.emoji %></strong></p>
-        <span class="text-secondary"><%= link_to item.hashtag.name, items_path(hashtag: item.hashtag) %></span>
+        <span class="text-secondary"><%= link_to item.hashtag.name, root_path(hashtag: item.hashtag) %></span>
         <p class="mt-2 mb-0"><%= item.description %></p>
       </div>
       <span class="text-muted">Who else thought this was fresh?</span>

@@ -7,7 +7,7 @@
     <div>
       <p class="m-0"><strong><%= item.name %></strong></p>
         <span class="pr-1"><%= item.category.emoji %></span>
-        <span class="text-secondary small"><%= link_to item.hashtag.name, items_path(hashtag: item.hashtag) %></span>
+        <span class="text-secondary small"><%= link_to item.hashtag.name, root_path(hashtag: item.hashtag) %></span>
     </div>
     <%= render 'items/upvote_action', item: item %>
   </div>
