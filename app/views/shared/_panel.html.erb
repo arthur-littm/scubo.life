@@ -16,7 +16,7 @@
             <%= resource.name %>
           </span>
         </div>
-        <small class="pr-2 <%=  active ? 'text-white' : 'text-muted' %>"><%= resource.items.count %></small>
+        <small class="pr-2 <%=  active ? 'text-white' : 'text-muted' %>"><%= resource.items.published_items.count %></small>
       </div>
     <% end %>
   <% end %>

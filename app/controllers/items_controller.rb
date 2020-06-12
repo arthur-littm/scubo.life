@@ -44,7 +44,8 @@ class ItemsController < ApplicationController
     @item.user = current_user
     @item.hashtag = find_or_create_hashtag(params.dig(:item, :hashtag, :name))
     if @item.save
-      redirect_to root_path
+      flash[:notice] = "Item submitted for approval, wait a few minutes."
+      redirect_to my_account_path
     else
       @item.hashtag = nil
       render :new

@@ -25,6 +25,8 @@ class Item < ApplicationRecord
 
   after_create :notify_subscribers
 
+  scope :published_items, -> { where(approved: true).where(published: true) }
+  scope :unapproved_items, -> { where(approved: false) }
 
   def photo_key
     if photo.attached?
@@ -41,7 +43,7 @@ class Item < ApplicationRecord
     client.messages.create(
         from: "+442033897305",
         to: subscriber.phone_number,
-        body: "Scubo! #{self.user.email} added an item: #{self.name}"
+        body: "New item to approve! \n  Author: #{self.user.nickname} \n Item: #{self.name} \n Description: #{self.description} \n \n #{root_url}admin/item?model_name=item&f%5Bapproved%5D%5B42981%5D%5Bv%5D=false"
     )
   end
 
