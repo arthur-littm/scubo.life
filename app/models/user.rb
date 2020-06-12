@@ -5,7 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable
   has_many :items, dependent: :destroy
-  has_many :upvotes
+  has_many :upvotes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :saved_items, through: :bookmarks, source: :item
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

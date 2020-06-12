@@ -27,6 +27,7 @@ class Item < ApplicationRecord
 
   scope :published_items, -> { where(approved: true).where(published: true) }
   scope :unapproved_items, -> { where(approved: false) }
+  scope :archived_items, -> { where(published: false) }
 
   def photo_key
     if photo.attached?

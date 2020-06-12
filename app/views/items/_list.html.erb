@@ -1,0 +1,12 @@
+<div class="text-white pt-2 d-none d-lg-block">
+  <h5><%= title %></h5>
+</div>
+<div class="pt-2">
+  <% if items.any? %>
+    <% items.each do |item| %>
+      <%= render 'items/list_item', item: item %>
+    <% end %>
+  <% else %>
+    <p class="text-muted pt-3">No items yet, <%= link_to "add one here", new_item_path %></p>
+  <% end %>
+</div>

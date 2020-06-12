@@ -2,14 +2,17 @@
   <%= cl_image_tag item.photo_key, class: "rounded img-fit mr-3", alt: item.name, height: 140, width: 160 %>
   <div class="flex-grow-1">
     <div class="d-flex align-items-start">
-      <div class="flex-grow-1">
+      <div class="flex-grow-1 flex-shrink-1">
         <p class="mb-2"><strong><%= item.name %></strong></p>
-        <div class="small"><span class="text-muted">Category:</span> <span class="text-secondary"><%= item.category.emoji %> <%= item.category.name %></span></div>
-        <div class="small"><span class="text-muted">Hashtag:</span> <span class="text-secondary"><%= item.hashtag.name %></span></div>
-        <div class="small"><span class="text-muted">Address:</span> <span class="text-secondary"><%= item.address %></span></div>
       </div>
-      <%= link_to "Archive", "#", class: 'btn btn-danger btn-sm'  %>
+      <div class="d-flex">
+        <%= link_to "Edit", edit_item_path(item), class: 'btn btn-warning btn-sm mr-2'  %>
+        <%= link_to "Archive", "#", class: 'btn btn-danger btn-sm'  %>
+
+      </div>
     </div>
+    <div class="small"><span class="text-muted">Category:</span> <span class="text-secondary"><%= item.category.emoji %> <%= item.category.name %></span></div>
+    <div class="small"><span class="text-muted">Hashtag:</span> <span class="text-secondary"><%= item.hashtag.name %></span></div>
     <p class="mt-2"><%= item.description %></p>
   </div>
 </div>

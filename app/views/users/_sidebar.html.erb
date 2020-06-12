@@ -1,0 +1,49 @@
+<div class="card sticky-top-spaced">
+  <div class="d-flex align-items-center p-3">
+    <%= image_tag user.picture_url, class: "avatar-bordered avatar-xxl mr-3" %>
+    <div>
+      <p class="m-0"><strong><%= user.nickname %></strong></p>
+      <p class="m-0 text-secondary"><small><%= user.email %></small></p>
+    </div>
+  </div>
+  <div class="bg-light px-3 py-1">
+    <span class="text-muted"><strong>Dashboard</strong></span>
+  </div>
+  <div>
+    <%= link_to my_account_path, class: 'p-3 border-bottom d-flex w-100 justify-content-between align-items-center' do %>
+      <div>
+        <i class="fas fa-grip-horizontal text-muted mr-2"></i> Published Items
+      </div>
+      <span class="text-muted small"><%= current_user.items.published_items.count %></span>
+    <% end %>
+    <%= link_to saved_path, class: 'p-3 border-bottom d-flex w-100 justify-content-between align-items-center' do %>
+      <div>
+        <i class="fas fa-heart text-muted mr-2"></i> Saved Items <small class="text-muted">Coming soon!</small>
+      </div>
+      <span class="text-muted small"><%= current_user.saved_items.count %></span>
+    <% end %>
+    <%= link_to pending_path, class: 'p-3 border-bottom d-flex w-100 justify-content-between align-items-center' do %>
+      <div>
+        <i class="fas fa-pause-circle text-muted mr-2"></i> Pending Approvals
+      </div>
+      <span class="text-muted small"><%= current_user.items.unapproved_items.count %></span>
+    <% end %>
+    <%= link_to archive_path, class: 'p-3 d-block d-flex w-100 justify-content-between align-items-center' do %>
+      <div>
+        <i class="fas fa-archive text-muted mr-2"></i> Archived Items
+      </div>
+      <span class="text-muted small"><%= current_user.items.archived_items.count %></span>
+    <% end %>
+  </div>
+  <div class="bg-light px-3 py-1">
+    <span class="text-muted"><strong>Account</strong></span>
+  </div>
+  <div>
+    <%= link_to "#", class: 'p-3 border-bottom d-block' do %>
+      <i class="fas fa-cogs text-muted mr-2"></i> Edit Profile <small class="text-muted">Coming soon!</small>
+    <% end %>
+    <%= link_to "#", class: 'p-3 border-bottom d-block' do %>
+      <i class="fas fa-hand-peace text-muted mr-2"></i> Log out
+    <% end %>
+  </div>
+</div>

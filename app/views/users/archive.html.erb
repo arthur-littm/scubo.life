@@ -5,8 +5,11 @@
         <li class="breadcrumb-item">
           <%= link_to "Home", root_path %>
         </li>
+        <li class="breadcrumb-item">
+          <%= link_to "My Account", root_path %>
+        </li>
         <li class="breadcrumb-item active text-white" aria-current="page">
-          My Account
+          Archived Items
         </li>
       </ol>
     </nav>
@@ -15,11 +18,10 @@
 <div class="container mt-n5 pb-4">
   <div class="row">
     <div class="col-lg-4">
-      <%= render 'sidebar', user: @user, active: :published %>
+      <%= render 'sidebar', user: @user, active: :pending %>
     </div>
     <div class="col-lg-8">
-      <%= render 'items/list', title: "Published Items", items: current_user.items.published_items %>
+      <%= render 'items/list', title: "Archived Items", items: current_user.items.archived_items %>
     </div>
   </div>
 </div>
-
