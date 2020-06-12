@@ -1,0 +1,16 @@
+<div class="d-flex my-3">
+  <%= cl_image_tag item.photo_key, class: "rounded img-fit mr-3", alt: item.name, height: 140, width: 160 %>
+  <div class="flex-grow-1">
+    <div class="d-flex align-items-start">
+      <div class="flex-grow-1">
+        <p class="mb-2"><strong><%= item.name %></strong></p>
+        <div class="small"><span class="text-muted">Category:</span> <span class="text-secondary"><%= item.category.emoji %> <%= item.category.name %></span></div>
+        <div class="small"><span class="text-muted">Hashtag:</span> <span class="text-secondary"><%= item.hashtag.name %></span></div>
+        <div class="small"><span class="text-muted">Address:</span> <span class="text-secondary"><%= item.address %></span></div>
+      </div>
+      <%= link_to "Archive", "#", class: 'btn btn-danger btn-sm'  %>
+    </div>
+    <p class="mt-2"><%= item.description %></p>
+  </div>
+</div>
+<hr>
