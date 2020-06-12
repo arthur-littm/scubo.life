@@ -6,3 +6,7 @@
 .img-fit {
   object-fit: cover;
 }
+
+.full-height {
+  height: calc(100vh - 70px - 90px)
+}
