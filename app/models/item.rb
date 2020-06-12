@@ -38,12 +38,13 @@ class Item < ApplicationRecord
 
   def notify_subscribers
     return unless Rails.env.production?
+    approval_url = "https://www.scubo.life/admin/item?model_name=item&f%5Bapproved%5D%5B50286%5D%5Bv%5D=false"
     client = Twilio::REST::Client.new
     subscriber = Subscriber.first
     client.messages.create(
         from: "+442033897305",
         to: subscriber.phone_number,
-        body: "New item to approve! \n  Author: #{self.user.nickname} \n Item: #{self.name} \n Description: #{self.description} \n \n #{root_url}admin/item?model_name=item&f%5Bapproved%5D%5B42981%5D%5Bv%5D=false"
+        body: "New item to approve! \n  Author: #{self.user.nickname} \n Item: #{self.name} \n Description: #{self.description} \n \n #{approval_url}"
     )
   end
 
