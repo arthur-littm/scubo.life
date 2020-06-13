@@ -5,15 +5,15 @@
       <span>By <strong><%= item.user.nickname %></strong> (<%= link_to pluralize(item.user.items.count, 'item'), root_path(user: item.user.id) %>)</span>
     </div>
 
-    <div>
-      <%= render 'items/upvote_action', item: item %>
+    <div data-controller="upvote" data-target="upvote.upvoteLink">
+      <%= render 'upvotes/upvote', item: item %>
     </div>
   </div>
 
   <%= cl_image_tag item.photo_key, class: "w-100 rounded img-fit my-3", alt: item.name, height: 300, role: "button", data: { toggle: "modal", target: "#item#{ item.id }" } %>
 
   <div class="row">
-    <div class="col">
+    <div class="col-12 col-lg-6">
       <div class="bg-light rounded p-3 mb-3">
         <p class="m-0"><strong><%= item.name %> <%= item.category.emoji %></strong></p>
         <span class="text-secondary"><%= link_to item.hashtag.name, root_path(hashtag: item.hashtag) %></span>
@@ -35,7 +35,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col" data-controller='map'>
+    <div class="col-12 col-lg-6 mt-3 mt-lg-0" data-controller='map'>
       <div id="map"
            class="rounded overflow-hidden"
            style="width: 100%; height: 240px;"
@@ -45,11 +45,18 @@
     </div>
   </div>
   <hr>
-  <div class="d-flex">
-    <%= link_to "Save item", "#", class: "btn btn-secondary mr-2"  %>
-    <% if policy(item).edit? %>
-      <%= link_to "Edit", edit_item_path(item), class: 'btn btn-light small' %>
-    <% end %>
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <div data-controller="bookmark" data-target="bookmark.bookmarkLink">
+        <%= render 'bookmarks/bookmark', item: item %>
+      </div>
+      <% if policy(item).edit? %>
+        <%= link_to "Edit", edit_item_path(item), class: 'btn btn-light mr-2' %>
+      <% end %>
+    </div>
+    <div>
+      <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+    </div>
   </div>
 </div>
 

@@ -7,6 +7,12 @@
       <%= render 'items/list_item', item: item %>
     <% end %>
   <% else %>
-    <p class="text-muted pt-3">No items yet, <%= link_to "add one here", new_item_path %></p>
+    <% if title == 'Pending Approvals' %>
+      <p class="text-muted pt-3">No items with pending approval, <%= link_to "add one here", new_item_path %></p>
+    <% elsif title == 'Archived Items' %>
+      <p class="text-muted pt-3">No items in the archive.</p>
+    <% elsif title == 'Saved Items' %>
+      <p class="text-muted pt-3">No saved items, <%= link_to "browse items here", root_path %>.</p>
+    <% end %>
   <% end %>
 </div>

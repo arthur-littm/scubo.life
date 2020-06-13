@@ -69,6 +69,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update_published
+    @item = Item.find(params[:id])
+    authorize @item
+    @item.update(published: params[:published])
+    flash[:notice] = "Item has been #{@item.published ? 'published' : 'archived'}"
+    redirect_to my_account_path
+  end
+
   private
 
   def sort(items)
@@ -94,6 +102,7 @@ class ItemsController < ApplicationController
       :description,
       :category_id,
       :address,
-      :photo)
+      :photo,
+      :published)
   end
 end

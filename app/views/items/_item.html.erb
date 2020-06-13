@@ -9,6 +9,8 @@
         <span class="pr-1"><%= item.category.emoji %></span>
         <span class="text-secondary small"><%= link_to item.hashtag.name, root_path(hashtag: item.hashtag) %></span>
     </div>
-    <%= render 'items/upvote_action', item: item %>
+    <div class="flex-shrink-0" data-controller="upvote" data-target="upvote.upvoteLink">
+      <%= render 'upvotes/upvote', item: item %>
+    </div>
   </div>
 </div>

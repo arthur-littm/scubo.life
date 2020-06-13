@@ -7,7 +7,9 @@ class Item < ApplicationRecord
   belongs_to :hashtag
   belongs_to :user
   has_many :upvotes
+  has_many :bookmarks
   has_many :upvoters, through: :upvotes, source: :user
+  has_many :bookmarkers, through: :bookmarks, source: :user
 
   validates :name, :description, :address, presence: true
   validates :name, length: { minimum: 2, maximum: MAX_CHARS_NAME }

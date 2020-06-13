@@ -17,6 +17,10 @@ class ItemPolicy < ApplicationPolicy
     user && !record.upvoters.include?(user)
   end
 
+  def can_bookmark?
+    user && !record.bookmarkers.include?(user)
+  end
+
   def map?
     true
   end
@@ -34,6 +38,10 @@ class ItemPolicy < ApplicationPolicy
   end
 
   def update?
+    current_user_is_owner?
+  end
+
+  def update_published?
     current_user_is_owner?
   end
 

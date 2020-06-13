@@ -1,0 +1,9 @@
+<% if policy(item).can_bookmark? || !user_signed_in? %>
+  <%= link_to item_bookmarks_path(item), method: :post, class: 'btn btn-secondary mr-2', remote: true, data: { action: 'ajax:success->bookmark#toggleBookmarked'} do %>
+    Save Item
+  <% end %>
+<% else %>
+  <%= link_to bookmark_path(item.bookmarks.find_by(user: current_user)), method: :delete, class: 'btn btn-secondary btn-secondary-active mr-2', remote: true, data: { action: 'ajax:success->bookmark#toggleBookmarked'} do %>
+    Item Saved
+  <% end %>
+<% end %>

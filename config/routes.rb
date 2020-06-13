@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   resources :items, only: [ :show, :new, :create, :edit, :update ] do
     get :map, on: :collection
+    patch :update_published, on: :member
     resources :upvotes, only: [ :create ]
+    resources :bookmarks, only: [ :create ]
   end
 
   get :my_account, to: 'users#my_account'
@@ -15,10 +17,11 @@ Rails.application.routes.draw do
   get :pending, to: 'users#pending'
   get :archive, to: 'users#archive'
 
-
   resources :users, only: [ :edit, :update ]
 
   resources :upvotes, only: [ :destroy ]
+
+  resources :bookmarks, only: [ :destroy ]
 
   resources :hashtags, only: [ :index ]
 

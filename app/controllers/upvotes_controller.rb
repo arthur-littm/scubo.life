@@ -3,13 +3,14 @@ class UpvotesController < ApplicationController
     item = Item.find(params[:item_id])
     upvote = Upvote.create(item: item, user: current_user)
     authorize upvote
-    redirect_to root_path
+    render partial: 'upvote', locals: { item: item }
   end
 
   def destroy
     upvote = Upvote.find(params[:id])
     authorize upvote
+    item = upvote.item
     upvote.destroy
-    redirect_to root_path
+    render partial: 'upvote', locals: { item: item }
   end
 end
