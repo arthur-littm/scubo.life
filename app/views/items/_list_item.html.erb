@@ -9,7 +9,7 @@
         <% if policy(item).edit? %>
 
           <% if item.published && item.approved %>
-            <%= link_to "Edit", edit_item_path(item), class: 'mr-2'  %>
+            <%= link_to "Edit", edit_item_path(item), class: 'btn-sm mr-2'  %>
             <%= link_to "Archive", update_published_item_path(item, published: false), method: :patch, class: 'btn btn-danger btn-sm'  %>
           <% elsif !item.published && item.approved %>
             <%= link_to "Restore", update_published_item_path(item, published: true), method: :patch, class: 'btn btn-secondary btn-sm'  %>
