@@ -64,3 +64,10 @@ $modal-backdrop-opacity: .8;
   background: $secondary !important;
   color: white !important;
 }
+
+.btn-danger {
+  background: transparent !important;
+  color: $primary-2 !important;
+  border: 1px solid $primary-2 !important;
+  font-weight: normal !important;
+}

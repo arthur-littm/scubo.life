@@ -5,11 +5,11 @@
       <div class="flex-grow-1 flex-shrink-1">
         <p class="mb-2"><strong><%= item.name %></strong></p>
       </div>
-      <div class="d-flex">
+      <div class="d-flex align-items-center">
         <% if policy(item).edit? %>
 
           <% if item.published && item.approved %>
-            <%= link_to "Edit", edit_item_path(item), class: 'btn btn-warning btn-sm mr-2'  %>
+            <%= link_to "Edit", edit_item_path(item), class: 'mr-2'  %>
             <%= link_to "Archive", update_published_item_path(item, published: false), method: :patch, class: 'btn btn-danger btn-sm'  %>
           <% elsif !item.published && item.approved %>
             <%= link_to "Restore", update_published_item_path(item, published: true), method: :patch, class: 'btn btn-secondary btn-sm'  %>
