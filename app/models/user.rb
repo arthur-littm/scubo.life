@@ -28,4 +28,12 @@ class User < ApplicationRecord
       return github_avatar
     end
   end
+
+  rails_admin do
+    list do
+      field :nickname
+      field :email
+      field :items
+    end
+  end
 end
