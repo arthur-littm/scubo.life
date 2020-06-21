@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :map, :show ]
   before_action :set_categories, only: [ :index, :new, :create, :map, :edit, :update ]
   before_action :set_hashtags, only: [ :index, :map ]
+  before_action :set_cities, only: [ :index, :map ]
 
   def index
     @items = sort(policy_scope(Item))
@@ -43,6 +44,8 @@ class ItemsController < ApplicationController
     authorize @item
     @item.user = current_user
     @item.hashtag = find_or_create_hashtag(params.dig(:item, :hashtag, :name))
+    @item.city = find_or_create_city(params.dig(:item, :city, :name))
+    @item.approved = true if current_user.admin
     if @item.save
       flash[:notice] = "Item submitted for approval, wait a few minutes."
       redirect_to my_account_path
@@ -88,6 +91,11 @@ class ItemsController < ApplicationController
         .group(:id)
         .order('COUNT(upvotes.id) DESC')
     end
+  end
+
+  def find_or_create_city(string)
+    return if string.blank?
+    return City.find_or_create_by(name: string)
   end
 
   def find_or_create_hashtag(string)

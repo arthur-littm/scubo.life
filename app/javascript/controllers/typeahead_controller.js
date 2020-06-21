@@ -1,5 +1,8 @@
 import { Controller } from "stimulus";
 
+// limit the number of requests:
+// https://medium.com/@pat_migliaccio/rate-limiting-throttling-consecutive-function-calls-with-queues-4c9de7106acc
+
 export default class extends Controller {
   static targets = [ 'results', 'input' ];
 

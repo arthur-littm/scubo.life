@@ -35,7 +35,16 @@
     placeholder: "Address",
     hint: 'Where is it?',
     input_html: { data: { target: 'autocomplete.input' } } %>
+
+
+    <%= f.simple_fields_for :city do |c| %>
+      <%= c.input :name,
+          input_html: { readonly: :true, data: { target: 'autocomplete.city' } },
+          label: false,
+          placeholder: "City" %>
+    <% end %>
   </div>
+
 
   <fieldset class="form-group radio_buttons required item_category">
     <input type="hidden" name="item[category_id]" value="">

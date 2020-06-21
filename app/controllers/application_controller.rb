@@ -24,6 +24,15 @@ class ApplicationController < ActionController::Base
       .limit(5)
   end
 
+  def set_cities
+    @cities = policy_scope(City)
+      .left_joins(:items)
+      .group(:id)
+      .order('COUNT(items.id) DESC')
+      .limit(5)
+  end
+
+
   private
 
   def skip_pundit?

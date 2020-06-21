@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :hashtag
   belongs_to :user
+  belongs_to :city, optional: true
+
   has_many :upvotes
   has_many :bookmarks
   has_many :upvoters, through: :upvotes, source: :user
