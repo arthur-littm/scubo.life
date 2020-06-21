@@ -1,5 +1,5 @@
 <% if policy(item).can_bookmark? || !user_signed_in? %>
-  <%= link_to item_bookmarks_path(item), method: :post, class: 'btn btn-secondary mr-2', remote: true, data: { action: 'ajax:success->bookmark#toggleBookmarked'} do %>
+  <%= link_to item_bookmarks_path(item), method: :post, class: 'btn btn-secondary mr-2', remote: user_signed_in?, data: { action: 'ajax:success->bookmark#toggleBookmarked'} do %>
     Save Item
   <% end %>
 <% else %>
