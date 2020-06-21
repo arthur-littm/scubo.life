@@ -1,5 +1,12 @@
 <div class="card p-3 mb-3">
-  <strong><%= title %></strong>
+  <div class="d-flex justify-content-between align-items-center">
+    <strong><%= title %></strong>
+    <span>
+      <% if collection.first.is_a?(City) %>
+        <%= link_to "Around me", root_path(around_me: true), class: "small"  %>
+      <% end %>
+    </span>
+  </div>
   <hr class="my-2">
   <% collection.each do |resource| %>
     <% symbol = resource.class.name.parameterize.to_sym %>

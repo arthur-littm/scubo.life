@@ -22,6 +22,7 @@ class Item < ApplicationRecord
 
   scope :filter_by_category, -> (category_id) { where category_id: category_id }
   scope :filter_by_hashtag, -> (hashtag_id) { where hashtag_id: hashtag_id }
+  scope :filter_by_city, -> (city_id) { where city_id: city_id }
 
   has_one_attached :photo
   validate :photo_present

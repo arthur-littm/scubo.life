@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
     @items = @items.where(user_id: params[:user]) if params[:user]
     @items = @items.filter_by_category(params[:category]) if params[:category].present?
     @items = @items.filter_by_hashtag(params[:hashtag]) if params[:hashtag].present?
+    @items = @items.filter_by_city(params[:city]) if params[:city].present?
     @items = @items.page(params[:page])
   end
 
