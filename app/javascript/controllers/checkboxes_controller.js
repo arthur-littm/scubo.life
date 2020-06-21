@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = [ 'checkbox' ];
 
   connect () {
-    // console.log('hello');
   }
 
   updateCheckbox (e) {

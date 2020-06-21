@@ -4,7 +4,6 @@ export default class extends Controller {
   // static targets = [ 'container', 'modal' ];
 
   connect () {
-    console.log('hello');
   }
 
   refresh(e) {

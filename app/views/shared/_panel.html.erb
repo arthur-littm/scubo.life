@@ -1,9 +1,13 @@
 <div class="card p-3 mb-3">
   <div class="d-flex justify-content-between align-items-center">
     <strong><%= title %></strong>
-    <span>
+    <span data-controller="around-me">
       <% if collection.first.is_a?(City) %>
-        <%= link_to "Around me", root_path(around_me: true), class: "small"  %>
+        <%= link_to "Around me",
+        root_path(around_me: true),
+        remote: true,
+        class: "small",
+        data: { action: 'click->around-me#getItemsAroundMe' } %>
       <% end %>
     </span>
   </div>
