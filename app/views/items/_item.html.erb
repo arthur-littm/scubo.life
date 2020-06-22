@@ -15,8 +15,4 @@
       <%= render 'upvotes/upvote', item: item %>
     </div>
   </div>
-  <% if params[:around_me] %>
-    <span><%= item.distance_to(@city) %></span>
-
-  <% end %>
 </div>
