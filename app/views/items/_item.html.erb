@@ -15,4 +15,8 @@
       <%= render 'upvotes/upvote', item: item %>
     </div>
   </div>
+  <% if params[:lat].present? && params[:lng].present? %>
+    <span><%#= item.distance_to([params[:lat],params[:lng]]) %></span>
+
+  <% end %>
 </div>
