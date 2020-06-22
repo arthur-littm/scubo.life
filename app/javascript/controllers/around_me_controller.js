@@ -11,7 +11,7 @@ export default class extends Controller {
     navigator.geolocation.getCurrentPosition((position) => {
       console.log(position);
       const path = `/?around_me=true&lat=${position.coords.latitude}&lng=${position.coords.longitude}`;
-      window.location = path;
+      // window.location = path;
     });
   }
 }

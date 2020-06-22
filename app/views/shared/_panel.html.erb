@@ -5,9 +5,7 @@
       <% if collection.first.is_a?(City) %>
         <%= link_to "Around me",
         root_path(around_me: true),
-        remote: true,
-        class: "small",
-        data: { action: 'click->around-me#getItemsAroundMe' } %>
+        class: "small" %>
       <% end %>
     </span>
   </div>

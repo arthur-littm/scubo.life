@@ -10,7 +10,13 @@ class ItemsController < ApplicationController
     @items = @items.filter_by_category(params[:category]) if params[:category].present?
     @items = @items.filter_by_hashtag(params[:hashtag]) if params[:hashtag].present?
     @items = @items.filter_by_city(params[:city]) if params[:city].present?
-    # @items = @items.near([params[:lat], params[:lng]], 10) if params[:lat].present? && params[:lng].present?
+
+    if params[:around_me]
+      response = Net::HTTP.get( URI.parse( "https://www.iplocate.io/api/lookup/#{request.ip}" ) )
+      location = JSON.parse(response)
+      @city = "#{location['city']}, #{location['country']}"
+      @items = @items.near(@city, 50, order: 'distance')
+    end
 
     @items = @items.page(params[:page])
   end
