@@ -26,9 +26,12 @@
               Items near <%= @city %>
             <% else %>
               <%= page_entries_info @items %>
+              <%= link_to "Around me",
+              root_path(around_me: true),
+              class: "" %>
             <% end %>
           </span>
-          <% if params.has_key?(:category) || params.has_key?(:hashtag) || params.has_key?(:user) || params.has_key?(:city) %>
+          <% if params.has_key?(:category) || params.has_key?(:hashtag) || params.has_key?(:user) || params.has_key?(:city) || params.has_key?(:around_me) %>
             <%= link_to "Clear filters", root_path, class: "small" %>
           <% end %>
         </div>
