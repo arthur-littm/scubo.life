@@ -6,7 +6,7 @@
   <% collection.each do |resource| %>
     <% symbol = resource.class.name.parameterize.to_sym %>
     <% active = params[symbol].to_i == resource.id %>
-    <%= link_to root_path(symbol => resource.id), class: "panel-item rounded p-1 #{'bg-secondary text-white' if active}"  do  %>
+    <%= link_to request.params.merge(symbol => active ? nil : resource.id), class: "panel-item rounded p-1 #{'bg-secondary text-white' if active}"  do  %>
       <div class="d-flex align-items-center justify-content-between">
         <div>
           <% if resource.is_a?(Category) %>
