@@ -39,12 +39,13 @@
 
     <%= f.simple_fields_for :city do |c| %>
       <%= c.input :name,
-          input_html: { readonly: :true, data: { target: 'autocomplete.city' } },
+          input_html: { value: item.city&.name, readonly: :true, data: { target: 'autocomplete.city' } },
           label: false,
           placeholder: "City" %>
     <% end %>
   </div>
 
+  <hr>
 
   <fieldset class="form-group radio_buttons required item_category">
     <input type="hidden" name="item[category_id]" value="">
@@ -63,7 +64,12 @@
 
   </fieldset>
 
-  <%= f.input :photo, as: :file %>
+  <hr>
+
+  <div data-controller='photo-preview'>
+    <%= image_tag "", width: 300, class: "d-none rounded mb-3", data: { target: "photo-preview.image" } %>
+    <%= f.input :photo, as: :file, input_html: { class: 'd-none', data: { action: 'change->photo-preview#displayPreview' } }, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo' %>
+  </div>
 
   <%= f.submit "Submit", class: "btn btn-primary mb-3" %>
 <% end %>
