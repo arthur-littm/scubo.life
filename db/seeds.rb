@@ -2,9 +2,9 @@
 # Hashtag.destroy_all
 # Item.destroy_all
 # User.destroy_all
-puts "Cleaned up DB 🧹"
+# puts "Cleaned up DB 🧹"
 
-# USERS
+# # USERS
 # User.create!(
 #   nickname: "arthur-littm",
 #   email: "arthur@test.com",
@@ -21,32 +21,32 @@ puts "Cleaned up DB 🧹"
 
 # puts "Created users 🕺"
 
-# CATEGORIES
-food = Category.create!(name: "Food", emoji: '🌮')
-nature = Category.create!(name: "Nature", emoji: '🌲')
-drinks = Category.create!(name: "Drinks", emoji: '🍹')
-nightlife = Category.create!(name: "Nightlife", emoji: '🕺')
-exercising = Category.create!(name: "Exercising", emoji: '🚴‍♂️')
-touristy = Category.create!(name: "Touristy", emoji: '🤳')
+# # CATEGORIES
+# food = Category.create!(name: "Food", emoji: '🌮')
+# nature = Category.create!(name: "Nature", emoji: '🌲')
+# drinks = Category.create!(name: "Drinks", emoji: '🍹')
+# nightlife = Category.create!(name: "Nightlife", emoji: '🕺')
+# exercising = Category.create!(name: "Exercising", emoji: '🚴‍♂️')
+# touristy = Category.create!(name: "Touristy", emoji: '🤳')
 
-categories = [food, nature, drinks, nightlife, exercising, touristy]
-puts "Created categories 🌮"
+# categories = [food, nature, drinks, nightlife, exercising, touristy]
+# puts "Created categories 🌮"
 
-# HASHTAGS
-pork = Hashtag.create!(name: "# Pork Belly")
-beers = Hashtag.create!(name: "# Beers")
-views = Hashtag.create!(name: "# Views")
-friday = Hashtag.create!(name: "# Friday")
-friday = Hashtag.create!(name: "# Le Wagon")
+# # HASHTAGS
+# pork = Hashtag.create!(name: "# Pork Belly")
+# beers = Hashtag.create!(name: "# Beers")
+# views = Hashtag.create!(name: "# Views")
+# friday = Hashtag.create!(name: "# Friday")
+# friday = Hashtag.create!(name: "# Le Wagon")
 
-hashtags = [pork, beers, views, friday]
-puts "Created hashtags 🤳"
+# hashtags = [pork, beers, views, friday]
+# puts "Created hashtags 🤳"
 
 # 30.times do
 #   Item.create!(
 #     name: Faker::Restaurant.name,
 #     description: Faker::Restaurant.description[0..150],
-#     address: Faker::Address.full_address,
+#     address: '138 Kingsland Road, London E2 8DY',
 #     user: users.sample,
 #     category: categories.sample,
 #     hashtag: hashtags.sample)
