@@ -67,7 +67,13 @@
   <hr>
 
   <div data-controller='photo-preview'>
-    <%= image_tag "", width: 300, class: "d-none rounded mb-3", data: { target: "photo-preview.image" } %>
+    <% if item.photo.attached? %>
+      <% path = cl_image_path item.photo.key %>
+    <% else %>
+      <% path = "" %>
+    <% end %>
+
+    <%= image_tag path, width: 300, class: "#{'d-none' if path.blank?} rounded mb-3", data: { target: "photo-preview.image" } %>
     <%= f.input :photo, as: :file, input_html: { class: 'd-none', data: { action: 'change->photo-preview#displayPreview' } }, label_html: { class: 'upload-photo'}, label: '📷 Upload a photo' %>
   </div>
 

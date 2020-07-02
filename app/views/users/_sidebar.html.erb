@@ -39,10 +39,13 @@
     <span class="text-muted"><strong>Account</strong></span>
   </div>
   <div>
-    <%= link_to "#", class: 'p-3 border-bottom d-block' do %>
-      <i class="fas fa-cogs text-muted mr-2"></i> Edit Profile <small class="text-muted">Coming soon!</small>
+    <%= link_to "#", class: 'p-3 d-block border-bottom d-flex w-100 justify-content-between align-items-center' do %>
+      <div>
+      <i class="fas fa-cogs text-muted mr-2"></i> Edit Profile
+      </div>
+      <small class="badge badge-warning">Coming soon!</small>
     <% end %>
-    <%= link_to "#", class: 'p-3 border-bottom d-block' do %>
+    <%= link_to destroy_user_session_path, method: :delete, class: 'p-3 border-bottom d-block' do %>
       <i class="fas fa-hand-peace text-muted mr-2"></i> Log out
     <% end %>
   </div>
