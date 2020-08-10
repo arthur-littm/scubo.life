@@ -25,8 +25,8 @@ class Item < ApplicationRecord
   scope :filter_by_city, -> (city_id) { where city_id: city_id }
 
   has_one_attached :photo
-  # validate :photo_present
-  # validate :photo_size, if: Proc.new { |p| p.photo.attached? }
+  validate :photo_present
+  validate :photo_size, if: Proc.new { |p| p.photo.attached? }
 
   after_create :notify_subscribers
 
